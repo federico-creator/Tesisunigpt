@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/Tesisunigpt/static/css/main.dab8ee42.css",
+    "main.js": "/Tesisunigpt/static/js/main.4d074be0.js",
+    "static/js/453.53ccb5cf.chunk.js": "/Tesisunigpt/static/js/453.53ccb5cf.chunk.js",
+    "static/media/bannerreg.jpg": "/Tesisunigpt/static/media/bannerreg.73b321bf470569c2ec71.jpg",
+    "static/media/bannerlogin.jpg": "/Tesisunigpt/static/media/bannerlogin.7ea47e3a0a8be1c2045e.jpg",
+    "static/media/slick.svg": "/Tesisunigpt/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Tesisunigpt/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Tesisunigpt/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Tesisunigpt/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/Tesisunigpt/index.html",
+    "main.dab8ee42.css.map": "/Tesisunigpt/static/css/main.dab8ee42.css.map",
+    "main.4d074be0.js.map": "/Tesisunigpt/static/js/main.4d074be0.js.map",
+    "453.53ccb5cf.chunk.js.map": "/Tesisunigpt/static/js/453.53ccb5cf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dab8ee42.css",
+    "static/js/main.4d074be0.js"
+  ]
+}
