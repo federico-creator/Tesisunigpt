@@ -245,6 +245,43 @@
   color: white; /* Color de los iconos */
 }
 
+.slick-prev, .slick-next {
+  position: none;
+  top: 13%; /* Centra las flechas verticalmente */
+  transform: translateY(-50%); /* Ajusta el posicionamiento vertical */
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para las flechas */
+  color: white; /* Color de las flechas */
+  border: none;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 120px;
+}
+
+.slick-prev {
+  left: -40px; /* Ajusta según sea necesario */
+}
+
+.slick-next {
+  right: -40px; /* Ajusta según sea necesario */
+}
+
+.slick-prev:hover, .slick-next:hover {
+  background: rgba(0, 0, 0, 0.8); /* Fondo más oscuro al pasar el mouse */
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 20px; /* Tamaño del icono */
+  line-height: 1;
+  opacity: 1; /* Asegúrate de que los iconos sean visibles */
+  color: white; /* Color de los iconos */
+}
 .clients-section h2 {
   font-size: 3em; /* Tamaño del título */
   margin-bottom: 20px; /* Añade margen inferior */
