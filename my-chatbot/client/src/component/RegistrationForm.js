@@ -12,7 +12,6 @@ function RegistrationForm() {
   const [contrasena, setContrasena] = useState('');
   const [googleToken, setGoogleToken] = useState('');
   const [facebookToken, setFacebookToken] = useState('');
-  const [appleToken, setAppleToken] = useState('');
 
   const navigate = useNavigate(); // Instancia useNavigate
 
@@ -84,9 +83,6 @@ function RegistrationForm() {
           redirect_uri: 'YOUR_REDIRECT_URI',
           client_id: 'YOUR_APPLE_CLIENT_ID',
           client_secret: 'YOUR_APPLE_CLIENT_SECRET',
-        })
-        .then(response => {
-          setAppleToken(response.data.access_token);
         })
         .catch(error => {
           console.error(error);
