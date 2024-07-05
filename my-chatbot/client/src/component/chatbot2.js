@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVolumeUp, faCopy, faSyncAlt, faThumbsDown, faThumbsUp, faPencilAlt, faMicrophone, faPaperPlane, faSliders, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faVolumeUp, faCopy, faSyncAlt, faThumbsDown, faThumbsUp, faPencilAlt, faMicrophone, faPaperPlane, faSliders } from '@fortawesome/free-solid-svg-icons';
 
 const PageContainer = styled.div`
   display: flex;
@@ -87,12 +87,6 @@ const SendButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-`;
-
-const SendIcon = styled.img`
-  width: 36px;
-  height: 36px;
-  padding: 10px;
 `;
 
 const EditButton = styled.button`
@@ -229,7 +223,6 @@ function ChatBot() {
   const [editText, setEditText] = useState("");
   const [thumbsDownColor, setThumbsDownColor] = useState({});
   const [thumbsUpColor, setThumbsUpColor] = useState({});
-  const [chatbotResponse, setChatbotResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [chatHistory, setChatHistory] = useState([]);
   const [isLeftColumnVisible, setIsLeftColumnVisible] = useState(true);
@@ -263,9 +256,9 @@ function ChatBot() {
         text: messageText,
         user: userName,
         name: userName,
-        icon: "/usuario.png",
+        icon: `${process.env.PUBLIC_URL}/user.png`,
       };
-      setMessages([...messages, newMessage]);
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
       setInputText("");
       setShowPromptOptions(false);
 
@@ -275,15 +268,12 @@ function ChatBot() {
       // Send the message to the backend
       try {
         const response = await axios.post('/chatbot', { userInput: messageText });
-        setChatbotResponse(response.data.chatbotResponse);
-
-        // Add the chatbot response to the messages
         const botMessage = {
           id: messages.length + 2,
           text: response.data.chatbotResponse,
           user: "Chatbot",
           name: "Chatbot",
-          icon: "/uni.png",
+          icon: `${process.env.PUBLIC_URL}/uni.png`,
         };
         setMessages((prevMessages) => [...prevMessages, botMessage]);
       } catch (error) {

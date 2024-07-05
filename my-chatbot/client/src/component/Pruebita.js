@@ -3,7 +3,7 @@ import * as XLSX from 'xlsx';
 import './Pruebita.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faGlobe, faPhone, faSchool, faGraduationCap, faPeopleGroup, faRankingStar, faArrowAltCircleRight, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faGlobe, faPhone, faSchool, faGraduationCap, faPeopleGroup, faRankingStar, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 function Pruebita() {
   const [data, setData] = useState([]);
@@ -13,21 +13,25 @@ function Pruebita() {
   const [hoveredPhone, setHoveredPhone] = useState(null);
 
   useEffect(() => {
-    fetch('/Universidades1.xlsx') // Adjust this path to your Excel file in the 'public' folder
+    fetch(`${process.env.PUBLIC_URL}/Universidades1.xlsx`)
       .then(response => response.arrayBuffer())
       .then(buffer => {
         const workbook = XLSX.read(buffer, { type: 'array' });
         const worksheet = workbook.Sheets[workbook.SheetNames[0]];
         const jsonData = XLSX.utils.sheet_to_json(worksheet);
+        console.log(jsonData); // Verifica los datos leídos del archivo Excel
         setData(jsonData);
+      })
+      .catch(error => {
+        console.error('Error reading Excel file:', error);
       });
   }, []);
 
   const ensureUrl = (url) => {
     if (!url) {
-      return '#'; // return a placeholder if the URL is undefined or empty
+      return '#';
     }
-    url = url.trim(); // Trim any spaces
+    url = url.trim();
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'http://' + url;
     }
@@ -45,7 +49,6 @@ function Pruebita() {
     (item.Universidad && item.Universidad.toLowerCase().includes(searchTerm.toLowerCase())) ||
     (item.Incial && item.Incial.toLowerCase().includes(searchTerm.toLowerCase()))
   );
-  
 
   return (
     <div className="container">
@@ -64,7 +67,7 @@ function Pruebita() {
         >
           <div className="profile-front">
             <div className="profile-pic">
-              <img src={item.Image} alt={`${item.Universidad} logo`} />
+              <img src={`${item.Image}`} alt={`${item.Universidad} logo`} />
             </div>
             <FontAwesomeIcon icon={faArrowRight} size='2x' className="arrow-right" />
             <div className="profile-info">
@@ -92,14 +95,14 @@ function Pruebita() {
                 </div>
               </div>
               <div className="social-links">
-                {item.Instagram && (
-                  <a href={ensureUrl(item.Instagram)} target="_blank" rel="noopener noreferrer">
-                    <FontAwesomeIcon icon={faInstagram} size="2x" />
-                  </a>
-                )}
                 {item.Twitter && (
                   <a href={ensureUrl(item.Twitter)} target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faTwitter} size="2x" />
+                  </a>
+                )}
+                 {item.Instagram && (
+                  <a href={ensureUrl(item.Instagram)} target="_blank" rel="noopener noreferrer">
+                    <FontAwesomeIcon icon={faInstagram} size="2x" />
                   </a>
                 )}
                 {item.Web && (
@@ -147,23 +150,3 @@ function Pruebita() {
 }
 
 export default Pruebita;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
